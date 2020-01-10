@@ -1,0 +1,49 @@
+.center {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.task,
+.task2,
+.task3 {
+    border: 2px solid black;
+    width: 50%;
+    padding: 20px;
+    overflow: auto;
+}
+
+.task-child {
+    border: 1px solid black;
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    border-right: none;
+}
+
+.task-child:last-child {
+    border-right: 1px solid black;
+}
+
+.task2 {
+    width: 100%;
+}
+
+.task3 {
+    height: 330px;
+}
+
+.task5 {
+    width: 100%;
+    display: flex;
+}
+
+.answer {
+    border: 1px solid black;
+    width: 173px;
+}

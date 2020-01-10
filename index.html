@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="style.css" rel="stylesheet">
+    <title>Практические задания</title>
+</head>
+
+<body>
+    <H1 class="center">Практические задания</H1>
+
+    <!--Задание 1-->
+
+    <div id="task1">
+        <p>1). Напишите условие для проверки того, что переменная number не находится между 80 и 130 включительно.</p>
+        <p>Сделайте два варианта: с использованием || и с использованием &&.</p>
+        <p>Решение:</p>
+        <div class="container">
+            <div class="task">
+                <input type="button" value="Начать с ||" name="task11" OnClick="task11();">
+                <pre><!--Здесь так некрасиво потому что использовал тег <pre> чтобы показать код-->
+function task11() {
+    let number = prompt('Введите число:');
+    if (number && !isNaN(number)) {
+        if (number < 80 || number > 130) {
+            alert('Число ' + number + ' не находится между 80 и 130 включительно ');
+        } else {
+        alert('Число ' + number + ' находится между 80 и 130 включительно ');
+        }
+    } else alert('Введите корректное число');
+}
+                </pre>
+            </div>
+            <div class="task">
+                <input type="button" value="Начать с &&" name="task12" OnClick="task12();">
+                <pre><!--Здесь так некрасиво потому что использовал тег <pre> чтобы показать код-->
+function task12() {
+    let number = prompt('Введите число:');
+    if (number && !isNaN(number)) {
+        if (number >= 80 && number <= 130) {
+            alert('Число ' + number + ' находится между 80 и 130 включительно ');
+        } else {
+            alert('Число ' + number + ' не находится между 80 и 130 включительно ');
+        }
+    } else alert('Введите корректное число');
+}
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!--Задание 2-->
+
+    <div id="task2">
+        <p>2). Дан код на Javascript. Перепишите эту функцию, используя тернарный условный оператор ('?').</p>
+        <pre>
+            function checkNumber(number) { 
+                return number <=100 || 'Число больше 100'; 
+            }
+        </pre>
+        <p>Решение:</p>
+        <div class="container">
+            <div class="task2">
+                <p>Введите число:</p>
+                <p><input type="number" name="number" value="0" step="1" id="number2"></p>
+                <p><input type="button" value="Рассчитать" name="task2" OnClick="task2();"></p>
+                <div id="answerTask2" class="answer">&nbsp;</div>
+                <pre>
+                    function checkNumber(number) {
+                        return number <= 100 ? true : 'Число больше 100';
+                    }
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!--Задание 3-->
+
+    <div id="task3">
+        <p>3). Дан код на Javascript.</p>
+        <pre>
+            for (var i = 0; i < 10; i++) {
+                if (i % 2) {
+                    alert(i);
+                }
+            }     
+        </pre>
+        <p>a) Перепишите данный цикл, используя оператор continue.</p>
+        <p>b) Замените цикл for на конструкцию while (true) { ... }, используя внутри оператор break.</p>
+        <p>Решение:</p>
+        <div class="container">
+            <div class="task, task3">
+                <p>a) Перепишите данный цикл, используя оператор continue.</p>
+                <p><input type="button" value="Запустить" name="task31" OnClick="task31();"></p>
+                <pre>
+                    function task31() {
+                        for (var i = 0; i < 10; i++) {
+                            // если остатока от деления нет, то пропустить оставшуюся часть тела цикла
+                            if (i % 2 == 0) continue;
+                            alert(i);
+                        }
+                    }
+                </pre>
+            </div>
+            <div class="task, task3">
+                <p>b) Замените цикл for на конструкцию while (true) { ... }, используя внутри оператор break.</p>
+                <p><input type="button" value="Запустить" name="task32" OnClick="task32();"></p>
+                <pre>
+                    function task32() {
+                        var i = 0;
+                        //бесконечый цикл
+                        while (true) {
+                            //если i равно 10, то выходит из цикла вообще
+                            if (i == 10) break;
+                            //если есть остаток от деления, то вывести его
+                            if (i % 2) {
+                                alert(i);
+                            }
+                            i++;
+                        }
+                    }
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!--Задание 4-->
+
+    <div id="task4">
+        <p>4). Напишите на Javascript кусок кода, выполняющий задачу:</p>
+        <p>Дан массив чисел. Вычислить сумму квадратов тех чисел, модуль которых не превышает 2,5.</p>
+        <p>Решение:</p>
+        <div class="container">
+            <div class="task2">
+                <p>Введите числа через пробел:</p>
+                <p><input id="number4" size="70"></p>
+                <p><input type="button" value="Вычислить" name="task4" OnClick="task4();"></p>
+                <div id="answerTask4" class="answer">&nbsp;</div>
+                <pre>
+                    function task4() {
+                        //считываем с инпута введеные значения, разделенные пробелом и вставляем значения в массив numbers
+                        //здесь же заменяем запятые на точки для корректного числа с плавающей точкой
+                        //но пользователь может ввести дробное число как с точкой так и с запятой
+                        let numbers = document.getElementById('number4').value.replace(/,/, '.').split(' ');
+                        //делаем новый массив, превращая строку в число
+                        numbers.map(string => parseInt(string));
+                        var summa = checkNumbers(numbers);
+                        let answerTask = document.getElementById('answerTask4');
+                        answerTask.innerHTML = summa;
+                    }
+                    
+                    function checkNumbers(numbers) {
+                        let summa = 0;
+                        //цикл который прогоняет все элементы массива и проверяет модуль не превышает ли 2,5
+                        for (var i = 0; i <= numbers.length; i++) {
+                            if (Math.abs(numbers[i]) < 2.5) {
+                                //вычисляем сумму квадратов всем чисел которые прошли проверку
+                                summa += Math.pow(numbers[i], 2);
+                            }
+                        }
+                        return summa;
+                    }
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!--Задание 5-->
+
+    <div id="task5">
+        <p>5). Напишите на Javascript функцию, рассчитывающую заработную плату работника, исходя из параметров:</p>
+        <p>- часовая заработная плата,</p>
+        <p>- количество отработанных часов,</p>
+        <p>- стаж работника</p>
+        <p>Заработная плата состоит из оплаты за отработанное время и премии, размер которой определяется в зависимости от стажа: при стаже до 1 года – 0%, до 3 лет – 5%, до 5 лет – 8%, от 5 лет – 15%.</p>
+        <p>Решение:</p>
+        <div class="container">
+            <div class="task2">
+                <div class="task5 center">
+                    <div class="task-child">
+                        <p>Введите часовую заработную плату:</p>
+                        <p><input id="numberZp">&#8381;</p>
+                    </div>
+                    <div class="task-child">
+                        <p>Введите количество отработанных часов:</p>
+                        <p><input id="numberTime">ч</p>
+                    </div>
+                    <div class="task-child">
+                        <p>Введите стаж работника(в месяцах):</p>
+                        <p><input id="numberSkill">мес</p>
+                    </div>
+                </div>
+                <p class="center"><input type="button" value="Вычислить заработную плату работника" name="task5" OnClick="task5();"></p>
+                <p>Заработная плата работника:</p>
+                <div id="answerTask5" class="answer center">&#8381;</div>
+                <pre>
+//функция обрабатывает введенные данные и выводит результат на страницу
+function task5() {
+    //считываем значения инпутов
+    let numberZp = document.getElementById('numberZp').value;
+    let numberTime = document.getElementById('numberTime').value.replace(/,/, '.');
+    let numberSkill = document.getElementById('numberSkill').value;
+    //преобразовываем строки в числа и проверяем на корректность
+    //зп за час в рублях
+    numberZp = parseInt(numberZp, 10);
+    if (isNaN(numberZp)) {
+        alert('Введите корректную заработную плату');
+    }
+    //количество часов
+    numberTime = parseFloat(numberTime, 10);
+    if (isNaN(numberTime)) {
+        alert('Введите корректное количество отработанных часов');
+    }
+    //количество месяцев стажа
+    numberSkill = parseInt(numberSkill, 10);
+    if (isNaN(numberSkill)) {
+        alert('Введите корректное число месяцев стажа');
+    }
+    if (numberZp && numberTime && numberSkill) {
+        var zp = countZp(numberZp, numberTime, numberSkill);
+        let answerTask = document.getElementById('answerTask5');
+        answerTask.innerHTML = zp + ' &#8381;';
+    }
+}
+
+//функция, рассчитывающая заработную плату работника, исходя из параметров
+//можно было покороче код написать, но я продемонстрировал поподробнее что к чему
+function countZp(numberZp, numberTime, numberSkill) {
+    //зарплата
+    let zp = 0;
+    //процент премии
+    let proc = 0;
+    //премия
+    let premia = 0;
+    //определяем процент премии с помощью использования конструкции switch
+    switch (true) {
+        case numberSkill < 12:
+            proc = 0;
+            break;
+        case numberSkill < 36:
+            proc = 5;
+            break;
+        case numberSkill < 60:
+            proc = 8;
+            break;
+        case numberSkill >= 60:
+            proc = 15;
+            break;
+        default:
+            alert('Укажите верное количество месяцев стажа');
+    }
+    //вычисляем зарплату
+    zp = numberZp * numberTime;
+    //вычисляем премию
+    premia = (zp / 100 * proc);
+    //результат: зп + премия
+    result = zp + premia;
+
+    return result;
+}
+                </pre>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
